@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Match3
 {
-    public enum HealthStates
-    {
+    public enum HealthStates          //the 3 different health states
+    { 
         Sick,
         Neutral,
         Healthy
@@ -65,29 +65,29 @@ namespace Match3
             audiosrc = GetComponent<AudioSource>();
         }
 
-        void FixedUpdate()
+        void FixedUpdate()      
         {
-            currentHealth -= rateOfDecrease * Time.deltaTime;
-            healthBar.SetHealth(currentHealth);
+            currentHealth -= rateOfDecrease * Time.deltaTime;  //reduces health over time based on the rate of decrease
+            healthBar.SetHealth(currentHealth);                //updates the health bar by calling the sethealth function, passing the currenthealth in the argument
 
-            CheckState();
+            CheckState();                                      //calls checkstate to check the state of the health 
         }
 
-        private void CheckState()
+        private void CheckState()                              //function to do things according to the state of the health
         {
-            if (currentHealth >= 100)
+            if (currentHealth >= 100)                          //if currentHealth is greater than or equals to 100, it means that the player won
             {
-                display.DisplayWinUI();
-            }
-            else if (currentHealth < 1)
+                display.DisplayWinUI();                        //displays the Win UI
+            } 
+            else if (currentHealth < 1)                        //if currentHealth is lesser than 1, meaning 0, it means that the player lost
             {
-                display.DisplayDeathUI();
+                display.DisplayDeathUI();                      //displays the Death UI
             }
-            else if (currentHealth < min_neutralHealth && currentHealth > 1) // red health
+            else if (currentHealth < min_neutralHealth && currentHealth > 1) //red health, sick state
             {
                 healthState = HealthStates.Sick;
-                nm.DisplayNotification(0);
-                sr.sprite = sprites[0];
+                nm.DisplayNotification(0);                                  
+                sr.sprite = sprites[0];                                      
 
                 bannerSleep.SetActive(true);
                 bannerEat.SetActive(false);
@@ -103,7 +103,7 @@ namespace Match3
                 }
             }
 
-            else if (currentHealth >= min_neutralHealth && currentHealth < min_healthyHealth) // yellow health
+            else if (currentHealth >= min_neutralHealth && currentHealth < min_healthyHealth) //yellow health, neutral health
             {
                 healthState = HealthStates.Neutral;
                 nm.DisplayNotification(1);
@@ -123,7 +123,7 @@ namespace Match3
                 SetBoolInactiveSleep();
             }
 
-            else if (currentHealth >= min_healthyHealth && currentHealth < 100f) // green health
+            else if (currentHealth >= min_healthyHealth && currentHealth < 100f) //green health, healthy state
             {
                 healthState = HealthStates.Healthy;
                 nm.DisplayNotification(2);
@@ -145,49 +145,49 @@ namespace Match3
             SetBonus(healthState);
         }
 
-        private void SetBonus(HealthStates states)
+        private void SetBonus(HealthStates states)     //function that changes the bonus health for the matches based on the specific state, as well as changing the health decrease rate
         {
             switch (states)
             {
-                case HealthStates.Sick:
+                case HealthStates.Sick:                //if state is sick, then matching water and sleep gives bonus health
                     bonusTag = "Water";
                     bonusTag1 = "Sleeping";
-                    rateOfDecrease = 1.0f;
+                    rateOfDecrease = 1.0f;             //changes the rate of decrease to 1
                     break;
-                case HealthStates.Neutral:
+                case HealthStates.Neutral:             //if state is neutral, then matching fruit and veg gives bonus health  
                     bonusTag = "Fruit";
                     bonusTag1 = "Vegetable";
-                    rateOfDecrease = 1.25f;
+                    rateOfDecrease = 1.25f;            //changes the rate of decrease to 1.25
                     break;
-                case HealthStates.Healthy:
+                case HealthStates.Healthy:             //if state is healthy, then matching running gives bonus health
                     bonusTag = "Running";
                     bonusTag1 = "?";
-                    rateOfDecrease = 1.5f;
+                    rateOfDecrease = 1.5f;             //changes the rate of decrease to 1.5
                     break;
             }
         }
 
-        public void CalcAddHealth(string pieceTag)
+        public void CalcAddHealth(string pieceTag)    //function to calculate the health
         {
-            int prefabCount = 0;
-            int bonusCount = 0;
+            int prefabCount = 0;                      //the prefab count
+            int bonusCount = 0;                       //the bonus count
 
-            if (pieceTag == bonusTag || pieceTag == bonusTag1)
+            if (pieceTag == bonusTag || pieceTag == bonusTag1) //if the piece is the same as the bonus tag, then it will add onto the bonus count
             {
                 bonusCount++;
             }
-            else
+            else                                               //otherwise, it will just add to the prefab count
             {
                 prefabCount++;
 
             }
-            healthToAdd = (prefabCount * addNormal) + (bonusCount * addBonus);
+            healthToAdd = (prefabCount * addNormal) + (bonusCount * addBonus); //calculates the health to add
 
             //Debug.Log(healthToAdd);
 
-            currentHealth += healthToAdd;
+            currentHealth += healthToAdd; //adds healthtoadd to current health
 
-            healthToAdd = 0;
+            healthToAdd = 0;              //reset all variables back to 0
             bonusCount = 0;
             prefabCount = 0;
         }

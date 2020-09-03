@@ -9,7 +9,7 @@ namespace Match3
         public Tutorial tutorial;
         public GameObject StartUI;
 
-        public void TriggerTutorial()
+        public void TriggerTutorial()        //function to start the tutorial
         {
             FindObjectOfType<TutorialManager>().StartTutorial(tutorial);
             StartUI.SetActive(false);

@@ -69,12 +69,10 @@ namespace Match3
         {
             if (row > 1 && column > 1)
             {
-                //if (allPieces[row - 1, column].tag == piece.tag && allPieces[row - 2, column].tag == piece.tag)
                 if (allPieces[row - 1, column].CompareTag(piece.tag) && allPieces[row - 2, column].CompareTag(piece.tag))
                 {
                     return true;
                 }
-                //if (allPieces[row, column - 1].tag == piece.tag && allPieces[row, column - 2].tag == piece.tag)
                 if (allPieces[row, column - 1].CompareTag(piece.tag) && allPieces[row, column - 2].CompareTag(piece.tag))
                 {
                     return true;
@@ -84,7 +82,6 @@ namespace Match3
             {
                 if (column > 1)
                 {
-                    //if (allPieces[row, column - 1].tag == piece.tag && allPieces[row, column - 2].tag == piece.tag)
                     if (allPieces[row, column - 1].CompareTag(piece.tag) && allPieces[row, column - 2].CompareTag(piece.tag))
                     {
                         return true;
@@ -92,7 +89,6 @@ namespace Match3
                 }
                 if (row > 1)
                 {
-                    //if (allPieces[row - 1, column].tag == piece.tag && allPieces[row - 2, column].tag == piece.tag)
                     if (allPieces[row - 1, column].CompareTag(piece.tag) && allPieces[row - 2, column].CompareTag(piece.tag))
                     {
                         return true;
@@ -152,36 +148,36 @@ namespace Match3
             StartCoroutine(FillBoard());
         }
 
-        private void RefillBoard()
+        private void RefillBoard()                                                  //function to refill the board
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < width; i++)                                         //for loop through all the pieces
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (allPieces[i, j] == null)
+                    if (allPieces[i, j] == null)                                    //if piece is null, meaning there is no piece
                     {
-                        Vector2 tempPosition = new Vector2(i, j + offSet);
-                        int prefabIndex = Random.Range(0, piecePrefabs.Length);
-                        GameObject piece = Instantiate(piecePrefabs[prefabIndex], tempPosition, Quaternion.identity);
-                        allPieces[i, j] = piece;
-                        piece.GetComponent<Piece>().row = i;
-                        piece.GetComponent<Piece>().column = j;
+                        Vector2 tempPosition = new Vector2(i, j + offSet);          //add a tempposition on the empty piece position, with offset to make it fall
+                        int prefabIndex = Random.Range(0, piecePrefabs.Length);     //choose a random number from 0 to the length of piece prefabs
+                        GameObject piece = Instantiate(piecePrefabs[prefabIndex], tempPosition, Quaternion.identity);  //instantiate the piece prefab on the tempposition
+                        allPieces[i, j] = piece;                                    //sets the allpieces array to that piece
+                        piece.GetComponent<Piece>().row = i;                        //set the row of the piece to i 
+                        piece.GetComponent<Piece>().column = j;                     //set the row of the piece to j
                     }
                 }
             }
         }
 
-        private bool MatchesOnBoard()
+        private bool MatchesOnBoard()                                               //bool function to check if any matches on board
         {
-            for (int i = 0; i < width; i++)
+            for (int i = 0; i < width; i++)                                         //for loop through all the pieces
             {
                 for (int j = 0; j < height; j++)
                 {
-                    if (allPieces[i, j] != null)
+                    if (allPieces[i, j] != null)                                    //if the piece is not null
                     {
-                        if (allPieces[i, j].GetComponent<Piece>().isMatched)
+                        if (allPieces[i, j].GetComponent<Piece>().isMatched)        //if the piece is matched
                         {
-                            return true;
+                            return true;                                            //return true
                         }
                     }
                 }
@@ -189,17 +185,17 @@ namespace Match3
             return false;
         }
 
-        private IEnumerator FillBoard()
+        private IEnumerator FillBoard()                                             //function to fill board
         {
-            RefillBoard();
+            RefillBoard();                                                          //calls refill board to place the pieces
             yield return new WaitForSeconds(.5f);
-            while (MatchesOnBoard())
+            while (MatchesOnBoard())                                                //while there are matches on the board
             {
                 yield return new WaitForSeconds(.5f);
-                DestroyMatches();
+                DestroyMatches();                                                   //destroy those matches 
             }
             yield return new WaitForSeconds(.5f);
-            currState = GameState.Move;
+            currState = GameState.Move;                                             //reset gamestate to move
         }
     }
 

@@ -7,13 +7,13 @@ namespace Match3
     public class Piece : MonoBehaviour
     {
         [Header("Board Variables")]
-        public int column;
-        public int row;
-        public int previousColumn;
-        public int previousRow;
+        public int column;                    //the column position
+        public int row;                       //the row position  
+        public int previousColumn;            //the previous column position      
+        public int previousRow;               //the row column position
         public int targetX;
         public int targetY;
-        public bool isMatched = false;
+        public bool isMatched = false;        //bool to see if the piece is matched
 
         private FindMatch findMatch;
         private Board board;
@@ -132,16 +132,16 @@ namespace Match3
             }
         }
 
-        void MovePiecesCalc(Vector2 direction)
+        void MovePiecesCalc(Vector2 direction)                                                //function to move the piece towards the direction
         {
             otherPiece = board.allPieces[row + (int)direction.x, column + (int)direction.y];
-            previousRow = row;
-            previousColumn = column;
-            otherPiece.GetComponent<Piece>().row += -1 * (int)direction.x;
+            previousRow = row;                                                                //sets the piece row to previousrow, in case piece does not match
+            previousColumn = column;                                                          //sets the piece column to previouscolumn, in case piece does not match
+            otherPiece.GetComponent<Piece>().row += -1 * (int)direction.x;                    //updates the row and column according to the direction+
             otherPiece.GetComponent<Piece>().column += -1 * (int)direction.y;
             row += (int)direction.x;
             column += (int)direction.y;
-            StartCoroutine(CheckMove());
+            StartCoroutine(CheckMove());                                                      //start checkmove coroutine
         }
 
         void MovePieces()                                                          //function to moves the pieces according the angle

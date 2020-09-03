@@ -27,23 +27,22 @@ namespace Match3
         private IEnumerator FindAllMatchesCo()
         {
             yield return new WaitForSeconds(0.2f);
-            for (int i = 0; i < board.width; i++)
+            for (int i = 0; i < board.width; i++)                                   //loops through all the positions
             {
                 for (int j = 0; j < board.height; j++)
                 {
-                    GameObject thisPiece = board.allPieces[i, j];
-                    if (thisPiece != null)
+                    GameObject thisPiece = board.allPieces[i, j];                   //get reference to a piece in the i and j position 
+                    if (thisPiece != null)                                          //if the piece is not null
                     {
-                        if (i > 0 && i < board.width - 1)
+                        if (i > 0 && i < board.width - 1)                           //checks the pieces in the width
                         {
-                            GameObject leftPiece = board.allPieces[i - 1, j];
-                            GameObject rightPiece = board.allPieces[i + 1, j];
-                            if (leftPiece != null && rightPiece != null)
+                            GameObject leftPiece = board.allPieces[i - 1, j];       //get reference to the left piece
+                            GameObject rightPiece = board.allPieces[i + 1, j];      //get reference to the right piece
+                            if (leftPiece != null && rightPiece != null)            //if both are not null
                             {
-                                //if (leftPiece.tag == thisPiece.tag && rightPiece.tag == thisPiece.tag)
-                                if (leftPiece.CompareTag(thisPiece.tag) && rightPiece.CompareTag(thisPiece.tag))
+                                if (leftPiece.CompareTag(thisPiece.tag) && rightPiece.CompareTag(thisPiece.tag)) //if their tags are the same
                                 {
-                                    if (!currMatches.Contains(leftPiece))
+                                    if (!currMatches.Contains(leftPiece))             //add the pieces to currMatches if they're not in it, change all the isMatched bools for the 3 pieces to true
                                     {
                                         currMatches.Add(leftPiece);
                                     }
@@ -65,14 +64,13 @@ namespace Match3
 
                         if (j > 0 && j < board.height - 1)
                         {
-                            GameObject upPiece = board.allPieces[i, j + 1];
-                            GameObject downPiece = board.allPieces[i, j - 1];
-                            if (upPiece != null && downPiece != null)
+                            GameObject upPiece = board.allPieces[i, j + 1];        //get reference to the up piece
+                            GameObject downPiece = board.allPieces[i, j - 1];      //get reference to the bottom piece
+                            if (upPiece != null && downPiece != null)              //if both are not null      
                             {
-                                //if (upPiece.tag == thisPiece.tag && downPiece.tag == thisPiece.tag)
-                                if (upPiece.CompareTag(thisPiece.tag) && downPiece.CompareTag(thisPiece.tag))
+                                if (upPiece.CompareTag(thisPiece.tag) && downPiece.CompareTag(thisPiece.tag))  //if their tags are the same
                                 {
-                                    if (!currMatches.Contains(upPiece))
+                                    if (!currMatches.Contains(upPiece))            //add the pieces to currMatches if they're not in it, change all the isMatched bools for the 3 pieces to true 
                                     {
                                         currMatches.Add(upPiece);
                                     }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Match3
 {
     [System.Serializable]
-    public class Tutorial
+    public class Tutorial                //a class to store sentences 
     {
         [TextArea(3, 10)]
         public string[] sentences;

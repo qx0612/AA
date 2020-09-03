@@ -8,7 +8,7 @@ namespace Match3
     {
         public GameObject StartUI;
 
-        public void TriggerStart()
+        public void TriggerStart()    //function to start the game
         {
             Time.timeScale = 1f;
             StartUI.SetActive(false);
