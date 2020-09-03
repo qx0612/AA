@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rgb;
-    public float jumpForce = 500f;
+    private Rigidbody2D rgb; // get rigidbody component of player game object
+    public float jumpForce = 500f; // set the jump force of player
 
-    public Animator anim;
+    public Animator anim; // get the animator of player game object
 
-    public Text scoreText;
-    public int yourScore;
-    float nextScoreIncrease = 0f;
+    public Text scoreText; 
+    public int yourScore; // score text which increases
+    float nextScoreIncrease = 0f; // time between each score increment
 
-    private float startTime;
+    private float startTime; 
 
     public bool doubleJumpAllowed = false;
     public bool onTheGround = false;
