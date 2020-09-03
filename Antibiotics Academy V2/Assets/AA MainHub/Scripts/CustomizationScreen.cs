@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class CustomizationScreen : MonoBehaviour
 {
-    public bool IsGenderSelected;
+    public bool IsGenderSelected; // bool to check if player has selected any character
 
-    public GameObject AdvisePopUp;
+    public GameObject AdvisePopUp; // warning message that pops up if player clicks ok without selecting a character
 
     // Start is called before the first frame update
     void Start()
@@ -21,36 +21,34 @@ public class CustomizationScreen : MonoBehaviour
         
     }
 
-    public void SelectMale()
+    public void SelectMale() // function that triggers when player clicks on the male character in the character selection screen
     {
-        PlayerCharacterCustomization.IsMale = true;
-        IsGenderSelected = true;
-        Debug.Log("Male");
+        PlayerCharacterCustomization.IsMale = true; // set bool IsMale in the PlayerCharacterCustomization script to be true
+        IsGenderSelected = true; // set bool to true since player has selected a character
     }
 
-    public void SelectFemale()
+    public void SelectFemale() // function that triggers when player clicks on the female character in the character selection screen
     {
-        PlayerCharacterCustomization.IsMale = false;
-        IsGenderSelected = true;
-        Debug.Log("Female");
+        PlayerCharacterCustomization.IsMale = false; // set bool IsMale in the PlayerCharacterCustomization script to be false
+        IsGenderSelected = true; // set bool to true since player has selected a character
     }
 
-    public void GoToMainScene()
+    public void GoToMainScene() // function to go to main scene after selecting a character
     {
-        if (IsGenderSelected == true)
+        if (IsGenderSelected == true) // if player has selected a character
         {
-            SceneManager.LoadScene("Main");
+            SceneManager.LoadScene("Main"); // go to main scene
         }
-        else
+        else // if player has not selected a character
         {
-            StartCoroutine(AdvisePopUpTime());
+            StartCoroutine(AdvisePopUpTime()); // warning message appear
         }
     }
 
-    IEnumerator AdvisePopUpTime()   // Let the text hover for a while before disappearing
+    IEnumerator AdvisePopUpTime() // Coroutine function to let the warning text hover for a while before disappearing
     {
-        AdvisePopUp.SetActive(true);
-        yield return new WaitForSeconds(2);
-        AdvisePopUp.SetActive(false);
+        AdvisePopUp.SetActive(true); // set the warning text to appear
+        yield return new WaitForSeconds(2); // wait for 2 seconds 
+        AdvisePopUp.SetActive(false); // make the warning text disappear
     }
 }

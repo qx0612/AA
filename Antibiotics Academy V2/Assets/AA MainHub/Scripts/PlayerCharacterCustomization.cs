@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class PlayerCharacterCustomization
 {
-    public static bool IsMale;
+    public static bool IsMale; // static bool to check the gender of the character the player selected
 }

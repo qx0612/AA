@@ -26,7 +26,7 @@ public class GameManagerBehavior : MonoBehaviour
     }
 
     public Text waveLabel;
-    public GameObject[] nextWaveLabels;
+    //public GameObject[] nextWaveLabels;
 
     public bool gameOver = false;
     public bool lost = false;
@@ -40,15 +40,15 @@ public class GameManagerBehavior : MonoBehaviour
             wave = value;
             if (!gameOver) // if game not over
             {
-                if (wave > 1)
-                {
-                    for (int i = 0; i < nextWaveLabels.Length; i++)
-                    {
-                        Debug.Log(wave);
-                        //nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
-                    }
-                }
-                else if (wave > spawn.waves.Length)
+                //if (wave > 1)
+                //{
+                //    for (int i = 0; i < nextWaveLabels.Length; i++)
+                //    {
+                //        Debug.Log(wave);
+                //        //nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
+                //    }
+                //}
+                if (wave > Wave)
                 {
                     gameOver = true;
                     lost = false;
@@ -98,13 +98,14 @@ public class GameManagerBehavior : MonoBehaviour
     }
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         Gold = 300;
         Wave = 0;
         Health = 5;
         Time.timeScale = 0f;
         spawn = spawner.GetComponent<SpawnEnemy>();
+        Debug.Log(spawn.waves.Length);
     }
 
     // Update is called once per frame
@@ -113,6 +114,7 @@ public class GameManagerBehavior : MonoBehaviour
         if (gameOver == true && lost == false)
         {
             DisplayWinUI();
+            GameManager.npclawyerStage = 1;
         }
 
     }

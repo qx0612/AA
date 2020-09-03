@@ -15,7 +15,7 @@ public class OpenShop : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (!StartUI.activeInHierarchy && !deathUI.activeInHierarchy && !winUI.activeInHierarchy || !TutorialUI.activeInHierarchy)
+        if (!StartUI.activeInHierarchy && !deathUI.activeInHierarchy && !winUI.activeInHierarchy || !TutorialUI.activeInHierarchy) 
         {
             if (!ShopUI.activeInHierarchy)
             {

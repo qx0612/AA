@@ -83633,9 +83633,10 @@ MonoBehaviour:
   dialogue:
     name: Lawyer
     sentences:
-    - "Malcolm simp\t"
-    - Donkey
-    - AHSD AOHSD AOIHD AOSj da
+    - Getting enough physical activity lowers the risk of illnesses and improves
+      our mental health.
+    - Also, being in nature is thought to help with increasing our focus levels.
+    - Get ready to run!
 --- !u!1 &1389272088
 GameObject:
   m_ObjectHideFlags: 0

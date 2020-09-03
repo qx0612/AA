@@ -30,18 +30,6 @@ namespace Match3
             }
         }
 
-        private void Effectiveness()                                                 //function to reduce the antiobitic ability's effectiveness after each use
-        { 
-            if (healthManager.healthState == HealthStates.Sick && counter > 0)        //if the health state is in sick and the counter is greater than 0
-            {
-                btn.interactable = true;                                              //then the antibiotic ability button is interactable
-            }
-            else
-            {
-                btn.interactable = false;                                             //otherwise, it is not interactable
-            }
-        }
-
         private void Effectiveness()                                                  //function that reduces the effectiveness of the antibiotic ability after every use
         {
             if (counter == 3)                                                        //if counter is 3, health adds by 25 and counter reduces by 1

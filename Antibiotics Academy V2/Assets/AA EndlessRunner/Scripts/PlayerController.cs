@@ -49,55 +49,57 @@ public class PlayerController : MonoBehaviour
         }
         if (onTheGround) // if player is on the ground
         {
-            doubleJumpAllowed = true; // player is allowed to double
+            doubleJumpAllowed = true; // player is allowed to double jump
         }
-        if (onTheGround && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
+        if (onTheGround && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // if player is on the ground and taps on the screen to jump
+        //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
-            Jump();
+            Jump(); // function to jump
         }
-        else if (doubleJumpAllowed && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
+        else if (doubleJumpAllowed && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) // if double jump is allowed and player taps on the screen to jump a second time
+        //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
-            Jump();
-            doubleJumpAllowed = false;
+            Jump(); // function to jump
+            doubleJumpAllowed = false; // set double jump to false since aready double jumpedd
         }
-        scoreText.text = "SCORE: " + yourScore;
+        scoreText.text = "SCORE: " + yourScore; // update the score text according to the current score
     }
 
     void FixedUpdate()
     {
-        rgb.velocity = new Vector2(0, rgb.velocity.y);
+        rgb.velocity = new Vector2(0, rgb.velocity.y); // set the velocity of rigidbody to be the change in y axis value when jumping
     }
 
-    void Jump()
+    void Jump() // function to jump
     {
-        rgb.velocity = new Vector2(rgb.velocity.x, 0f);
-        rgb.AddForce(Vector2.up * jumpForce);
+        rgb.velocity = new Vector2(rgb.velocity.x, 0f); // set the velocity of rigidbody to be the change in x axis vaue when running
+        rgb.AddForce(Vector2.up * jumpForce); // add a upward force to the rigidbody to jump
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Enemy")) // whe the player collides with any obstacles with the layermask "Enemy"
         {
-            retryPanel.SetActive(true);
-            Time.timeScale = 0;
+            retryPanel.SetActive(true); // pop-up a retry screen
+            Time.timeScale = 0; // pause the game
         }
     }
 
-    void IncreaseScore()
+    void IncreaseScore() // function to increase the score
     {
-        if (Time.unscaledTime > nextScoreIncrease)
+        if (Time.unscaledTime > nextScoreIncrease) // if 0.5 seconds passed
         {
-            yourScore += 1;
-            nextScoreIncrease = Time.unscaledTime + 0.5f;
+            yourScore += 1; // score increment by 1
+            nextScoreIncrease = Time.unscaledTime + 0.5f; // set score to increase next after 0.5 seconds pass
         }
     }
     
-    public void retryGame()
+    public void retryGame() // function to retry the endless runner
     {
         SceneManager.LoadScene(11); // retry endless runner
     }
 
-    public void backToMain()
+    public void backToMain() // function to go back to the community
     {
         SceneManager.LoadScene(7); // back to community
     }
