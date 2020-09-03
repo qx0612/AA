@@ -1,0 +1,2 @@
+C:\Users\nqx1e\Desktop\Antibiotics Academy V2\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\nqx1e\Desktop\Antibiotics Academy V2\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
