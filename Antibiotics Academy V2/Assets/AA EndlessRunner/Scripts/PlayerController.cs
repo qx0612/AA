@@ -15,20 +15,20 @@ public class PlayerController : MonoBehaviour
     public int yourScore; // score text which increases
     float nextScoreIncrease = 0f; // time between each score increment
 
-    private float startTime; 
+    private float startTime; // get the starting time
 
-    public bool doubleJumpAllowed = false;
-    public bool onTheGround = false;
+    public bool doubleJumpAllowed = false; // bool to check if player can double jump
+    public bool onTheGround = false; // bool to check if player is on the ground
 
-    public GameObject retryPanel;
+    public GameObject retryPanel; // pop-up that shows when player loses the endless runner game
 
     // Start is called before the first frame update
     void Start()
     {
-        retryPanel.SetActive(false);
+        retryPanel.SetActive(false); // set pop-up to false at start
 
-        Time.timeScale = 1;
-        rgb = GetComponent<Rigidbody2D>();
+        Time.timeScale = 1; // set time scale of game to 1
+        rgb = GetComponent<Rigidbody2D>(); 
         anim = GetComponent<Animator>();
 
         startTime = Time.time;
