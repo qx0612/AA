@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
         retryPanel.SetActive(false); // set pop-up to false at start
 
         Time.timeScale = 1; // set time scale of game to 1
-        rgb = GetComponent<Rigidbody2D>(); 
-        anim = GetComponent<Animator>();
+        rgb = GetComponent<Rigidbody2D>(); // get the rigidbody component of the player game object
+        anim = GetComponent<Animator>(); // get the animator component of the player game object
 
         startTime = Time.time;
     }
@@ -37,25 +37,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IncreaseScore();
+        IncreaseScore(); // function to increase the score
 
-        if (rgb.velocity.y == 0)
+        if (rgb.velocity.y == 0) // if no change in the y axis value of the rigidbody
         {
-            onTheGround = true;
+            onTheGround = true; // player is on the ground
         }
-        else
+        else // if there is a change in the y axis value of the rigidbody
         {
-            onTheGround = false;
+            onTheGround = false; // player is not on the ground
         }
-        if (onTheGround)
+        if (onTheGround) // if player is on the ground
         {
-            doubleJumpAllowed = true;
+            doubleJumpAllowed = true; // player is allowed to double
         }
         if (onTheGround && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
             Jump();
         }
-        else if (doubleJumpAllowed && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began
+        else if (doubleJumpAllowed && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
             Jump();
             doubleJumpAllowed = false;
