@@ -19,21 +19,21 @@ public class ChangeScene : MonoBehaviour
 
     public void CutScene2()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(3); // Change to second cutscene
     }
 
     public void CutScene3()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(4); // Change to third cutscene
     }
 
     public void CutScene4()
     {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(5); // Change to fourth cutscene
     }
 
     public void CharacterSelectionScene()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(6); // Change to character selection scene
     }
 }

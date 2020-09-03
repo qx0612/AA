@@ -6,30 +6,30 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody2D rgb;
-    public float jumpForce = 500f;
+    private Rigidbody2D rgb; // get rigidbody component of player game object
+    public float jumpForce = 500f; // set the jump force of player
 
-    public Animator anim;
+    public Animator anim; // get the animator of player game object
 
-    public Text scoreText;
-    public int yourScore;
-    float nextScoreIncrease = 0f;
+    public Text scoreText; 
+    public int yourScore; // score text which increases
+    float nextScoreIncrease = 0f; // time between each score increment
 
-    private float startTime;
+    private float startTime; // get the starting time
 
-    public bool doubleJumpAllowed = false;
-    public bool onTheGround = false;
+    public bool doubleJumpAllowed = false; // bool to check if player can double jump
+    public bool onTheGround = false; // bool to check if player is on the ground
 
-    public GameObject retryPanel;
+    public GameObject retryPanel; // pop-up that shows when player loses the endless runner game
 
     // Start is called before the first frame update
     void Start()
     {
-        retryPanel.SetActive(false);
+        retryPanel.SetActive(false); // set pop-up to false at start
 
-        Time.timeScale = 1;
-        rgb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        Time.timeScale = 1; // set time scale of game to 1
+        rgb = GetComponent<Rigidbody2D>(); // get the rigidbody component of the player game object
+        anim = GetComponent<Animator>(); // get the animator component of the player game object
 
         startTime = Time.time;
     }
@@ -37,25 +37,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IncreaseScore();
+        IncreaseScore(); // function to increase the score
 
-        if (rgb.velocity.y == 0)
+        if (rgb.velocity.y == 0) // if no change in the y axis value of the rigidbody
         {
-            onTheGround = true;
+            onTheGround = true; // player is on the ground
         }
-        else
+        else // if there is a change in the y axis value of the rigidbody
         {
-            onTheGround = false;
+            onTheGround = false; // player is not on the ground
         }
-        if (onTheGround)
+        if (onTheGround) // if player is on the ground
         {
-            doubleJumpAllowed = true;
+            doubleJumpAllowed = true; // player is allowed to double
         }
         if (onTheGround && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
             Jump();
         }
-        else if (doubleJumpAllowed && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began
+        else if (doubleJumpAllowed && Input.GetButtonDown("Jump")) //Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began //Input.GetButtonDown("Jump")
         {
             Jump();
             doubleJumpAllowed = false;
