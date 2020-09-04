@@ -2828,7 +2828,7 @@ GameObject:
   m_Component:
   - component: {fileID: 486617166}
   m_Layer: 5
-  m_Name: Sleep Turret
+  m_Name: Fruit Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4290,11 +4290,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c448b469670742cbbc73b60f6acfc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawner: {fileID: 1732615886}
   DeathUI: {fileID: 1285853887}
   WinUI: {fileID: 137173287}
   goldLabel: {fileID: 2132922819}
   waveLabel: {fileID: 1927656023}
+  nextWaveLabels: []
   gameOver: 0
   lost: 0
   healthIndicator:
@@ -4455,7 +4455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181, y: -424}
+  m_AnchoredPosition: {x: 181, y: -387}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &855688592
@@ -5571,7 +5571,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -156, y: -423.99997}
+  m_AnchoredPosition: {x: -156, y: -387}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1084963430
@@ -10354,7 +10354,7 @@ GameObject:
   - component: {fileID: 1975519137}
   - component: {fileID: 1975519136}
   m_Layer: 5
-  m_Name: Sleep
+  m_Name: Fruit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10423,7 +10423,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2143376730}
-        m_MethodName: SleepTurret
+        m_MethodName: FruitTurret
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11330,4 +11330,4 @@ MonoBehaviour:
   turretInstance: {fileID: 0}
   antibioticTurret: {fileID: 134384, guid: 8753065669ac62c4f8c1bbc8b531ad60, type: 3}
   waterTurret: {fileID: 134384, guid: e5e8abdaba8647d45979ee1e9ec826f5, type: 3}
-  sleepTurret: {fileID: 134384, guid: c56245e6eeccf73449dc9fae5b6d3665, type: 3}
+  fruitTurret: {fileID: 134384, guid: c56245e6eeccf73449dc9fae5b6d3665, type: 3}

@@ -28,6 +28,7 @@ TagManager:
   - score
   - bg
   - grass
+  - FruitTurr
   layers:
   - Default
   - TransparentFX

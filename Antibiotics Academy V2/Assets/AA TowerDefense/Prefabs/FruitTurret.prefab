@@ -92,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 105412}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b975bca5df9c94ec3bc0c60521d25001, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 11402030}
   m_Layer: 2
   m_Name: FruitTurret
-  m_TagString: SleepTurr
+  m_TagString: FruitTurr
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -380,7 +380,7 @@ Animator:
   m_GameObject: {fileID: 158574}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6c9cde36b0b19479ba146e80d1198811, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -481,7 +481,7 @@ Animator:
   m_GameObject: {fileID: 198738}
   m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e91c2c8f935824d5ead5ebc9af5a9d49, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
