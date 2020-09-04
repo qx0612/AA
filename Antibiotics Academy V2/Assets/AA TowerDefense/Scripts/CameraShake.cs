@@ -42,7 +42,7 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    public void Shake()
+    public void Shake() // function to shake the camera
     {
         if (!shaking)
         {

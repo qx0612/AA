@@ -11,8 +11,8 @@ namespace TowerDefense
 
         public void TriggerTutorial()
         {
-            FindObjectOfType<TutorialManager1>().StartTutorial(tutorial);
-            StartUI.SetActive(false);
+            FindObjectOfType<TutorialManager1>().StartTutorial(tutorial); // trigger the tutorial
+            StartUI.SetActive(false); // disable the start ui
         }
     }
 }

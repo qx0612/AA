@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class OpenShop : MonoBehaviour
 {
-    public GameObject ShopUI;
+    public GameObject ShopUI;         //shop ui game object
     public GameObject turretSpot;
 
-    public GameObject StartUI;
-    public GameObject TutorialUI;
-    public GameObject tutorial;
-    public GameObject deathUI;
-    public GameObject winUI;
+    public GameObject StartUI;        //start ui game object
+    public GameObject TutorialUI;     //tutorial ui game object
+    public GameObject tutorial;       //tutorial content game object
+    public GameObject deathUI;        //death ui game object
+    public GameObject winUI;          //win ui game object
 
     private void OnMouseUp()
     {
-        if (!StartUI.activeInHierarchy && !deathUI.activeInHierarchy && !winUI.activeInHierarchy || !TutorialUI.activeInHierarchy) 
+        if (!StartUI.activeInHierarchy && !deathUI.activeInHierarchy && !winUI.activeInHierarchy || !TutorialUI.activeInHierarchy) //if any of the UIs are not open
         {
-            if (!ShopUI.activeInHierarchy)
+            if (!ShopUI.activeInHierarchy)                  //if shop ui is not open
             {
-                if (!tutorial.activeInHierarchy)
+                if (!tutorial.activeInHierarchy)            //if tutorial content is not open
                 {
-                    ShopUI.SetActive(true);
-                    ShopUI.GetComponent<Shop>().instance = turretSpot;
+                    ShopUI.SetActive(true);                //open shop ui
+                    ShopUI.GetComponent<Shop>().instance = turretSpot;    //set the shop instance to the turretspot that it was clicked on
                 }
             }
         }

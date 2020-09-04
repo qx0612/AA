@@ -6,12 +6,12 @@ public class CloseShop : MonoBehaviour
 {
     public GameObject ShopUI;
 
-    public void ExitShop()
+    public void ExitShop()            //function to exit sohp
     {
         //Time.timeScale = 1f;
-        ShopUI.GetComponent<Shop>().instance = null;
+        ShopUI.GetComponent<Shop>().instance = null;             //resets the shop instance and turretinstance to null
         ShopUI.GetComponent<Shop>().turretInstance = null;
 
-        ShopUI.SetActive(false);
+        ShopUI.SetActive(false);                                //close the shop ui
     }
 }

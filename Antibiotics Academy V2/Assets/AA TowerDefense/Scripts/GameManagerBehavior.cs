@@ -4,34 +4,32 @@ using UnityEngine.UI;
 
 public class GameManagerBehavior : MonoBehaviour
 {
-    public GameObject spawner;
-    private SpawnEnemy spawn;
 
-    public GameObject DeathUI;
-    public GameObject WinUI;
+    public GameObject DeathUI;  //DeathUI game object
+    public GameObject WinUI;    //WinUI game object
 
-    public Text goldLabel;
-    private int gold;
+    public Text goldLabel;      //text to show the amount of gold
+    private int gold;           //gold value
     public int Gold
     {
         get
         {
-            return gold;
+            return gold;       //returns gold when getting
         }
         set
         {
-            gold = value;
-            goldLabel.GetComponent<Text>().text = "X " + gold;
+            gold = value;     //sets gold to value
+            goldLabel.GetComponent<Text>().text = "X " + gold;  //displays the amount of gold in the goldlabel text
         }
     }
 
     public Text waveLabel;
-    //public GameObject[] nextWaveLabels;
+    public GameObject[] nextWaveLabels;
 
-    public bool gameOver = false;
-    public bool lost = false;
+    public bool gameOver = false;  //bool to see if game is over
+    public bool lost = false;      //bool to see if player lost
 
-    private int wave;
+    private int wave;              //wave counter
     public int Wave
     {
         get { return wave; }
@@ -40,15 +38,7 @@ public class GameManagerBehavior : MonoBehaviour
             wave = value;
             if (!gameOver) // if game not over
             {
-                //if (wave > 1)
-                //{
-                //    for (int i = 0; i < nextWaveLabels.Length; i++)
-                //    {
-                //        Debug.Log(wave);
-                //        //nextWaveLabels[i].GetComponent<Animator>().SetTrigger("nextWave");
-                //    }
-                //}
-                if (wave > Wave)
+                if (wave > 10)
                 {
                     gameOver = true;
                     lost = false;
@@ -67,65 +57,58 @@ public class GameManagerBehavior : MonoBehaviour
         set
         {
             // 1
-            if (value < health)
+            if (value < health)             //if the current health value is less than health
             {
-                Camera.main.GetComponent<CameraShake>().Shake();
+                Camera.main.GetComponent<CameraShake>().Shake();  //camera shakes
             }
             // 2
             health = value;
-            // 2
-            if (health <= 0 && !gameOver)
+ 
+            if (health <= 0 && !gameOver)    //if health is less than or equals to 0 and its not game over
             {
-                gameOver = true;
-                lost = true;
-                //GameObject gameOverText = GameObject.FindGameObjectWithTag("GameOver");
-                //gameOverText.GetComponent<Animator>().SetBool("gameOver", true);
-                DisplayDeathUI();
+                gameOver = true;             //game over is true
+                lost = true;                 //lost is true
+                DisplayDeathUI();            //display the death ui
             }
             // 3 
             for (int i = 0; i < healthIndicator.Length; i++)
             {
-                if (i < Health)
+                if (i < Health)                                 //if i is less than health
                 {
-                    healthIndicator[i].SetActive(false);
+                    healthIndicator[i].SetActive(false);        //healthIndicator is not active  (healthIndicator is the bacteria that appears in the heart)
                 }
                 else
                 {
-                    healthIndicator[i].SetActive(true);
+                    healthIndicator[i].SetActive(true);         //otherwise, healthindicator is active
                 }
             }
         }
     }
 
-    // Use this for initialization
-    void Awake()
+    void Start()
     {
-        Gold = 300;
-        Wave = 0;
-        Health = 5;
+        Gold = 300;               //gold starts at 300
+        Wave = 0;                 //wave is at 0
+        Health = 5;               //health is set to 5
         Time.timeScale = 0f;
-        spawn = spawner.GetComponent<SpawnEnemy>();
-        Debug.Log(spawn.waves.Length);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (gameOver == true && lost == false)
+        if (gameOver == true && lost == false)  //if game is over and lost is false
         {
-            DisplayWinUI();
-            GameManager.npclawyerStage = 1;
+            DisplayWinUI();                     //display win UI
         }
 
     }
 
-    public void DisplayDeathUI()
+    public void DisplayDeathUI()       //function to display the DeathUI
     {
         DeathUI.SetActive(true);
         Time.timeScale = 0f;
     }
 
-    public void DisplayWinUI()
+    public void DisplayWinUI()        //function to display the WinUI
     {
         WinUI.SetActive(true);
         Time.timeScale = 0f;

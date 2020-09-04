@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
-    public GameObject turretPrefab;
-    private GameObject turret;
-    private GameManagerBehavior gameManager;
-    public bool occupied = false;
+    public GameObject turretPrefab;                                          //turret prefab 
+    private GameObject turret;                                               //instantiated turret
+    private GameManagerBehavior gameManager;                                 
+    public bool occupied = false;                                            //bool to check if spot is occupied or not
 
     // Use this for initialization
     void Start()
@@ -15,77 +15,63 @@ public class Turret : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private bool CanPlaceTurret()                                            //bool function to check if turret can be placed
     {
-
-    }
-
-    private bool CanPlaceTurret()
-    {
-        int cost = turretPrefab.GetComponent<MonsterData>().levels[0].cost;
-        return turret == null && gameManager.Gold >= cost;
+        int cost = turretPrefab.GetComponent<TurretData>().levels[0].cost;  //set the cost to the turrets current level cost
+        return turret == null && gameManager.Gold >= cost;                   //returns if the gold is greater than cost, meaning player can buy
     }
 
     //1
-    public void PlaceTurret()
+    public void PlaceTurret()                                                //function to place turret
     {
         //2
-        if (CanPlaceTurret())
-        {
+        if (CanPlaceTurret())                                                //if you can place turret
+        { 
             //3
-            occupied = true;
-            turret = Instantiate(turretPrefab, transform.position, Quaternion.identity);
+            occupied = true;                                                 //sets the occupied bool to true
+            turret = Instantiate(turretPrefab, transform.position, Quaternion.identity);   //turret is set to the instantiated turret prefab   
             //4
-            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+            AudioSource audioSource = gameObject.GetComponent<AudioSource>();              
             audioSource.PlayOneShot(audioSource.clip);
 
-            gameManager.Gold -= turret.GetComponent<MonsterData>().CurrentLevel.cost;
-        }
-        //else if (CanUpgradeTurret())
-        //{
-        //    turret.GetComponent<MonsterData>().increaseLevel();
-        //    AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        //    audioSource.PlayOneShot(audioSource.clip);
-
-        //    gameManager.Gold -= turret.GetComponent<MonsterData>().CurrentLevel.cost;
-        //}
-    }
-
-    public void UpgradeTurret()
-    {
-        if (CanUpgradeTurret())
-        {
-            turret.GetComponent<MonsterData>().increaseLevel();
-            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-            audioSource.PlayOneShot(audioSource.clip);
-
-            gameManager.Gold -= turret.GetComponent<MonsterData>().CurrentLevel.cost;
+            gameManager.Gold -= turret.GetComponent<TurretData>().CurrentLevel.cost;      //the gold then minus the cost 
         }
     }
 
-    private bool CanUpgradeTurret()
+    public void UpgradeTurret()                                               //function to upgrade the turret      
     {
-        if (turret != null)
+        if (CanUpgradeTurret())                                               //if turret can be upgraded 
         {
-            MonsterData monsterData = turret.GetComponent<MonsterData>();
-            MonsterLevel nextLevel = monsterData.getNextLevel();
-            if (nextLevel != null)
+            turret.GetComponent<TurretData>().increaseLevel();                //call increaseLevel function
+            AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+            audioSource.PlayOneShot(audioSource.clip);
+
+            gameManager.Gold -= turret.GetComponent<TurretData>().CurrentLevel.cost;  //the gold the minus the cost
+        }
+    }
+
+    private bool CanUpgradeTurret()                                           //bool functino to check if turret can be upgraded
+    {
+        if (turret != null)                                                   //if turret is not null
+        {
+            TurretData turretData = turret.GetComponent<TurretData>();        //get component to the turretdata
+            TurretLevel nextLevel = turretData.getNextLevel();                //get reference to the getNextLevel function
+            if (nextLevel != null)                                            //if next level does not return null
             {
-                return gameManager.Gold >= nextLevel.cost;
+                return gameManager.Gold >= nextLevel.cost;                    //return gold is greater than next level cost
             }
         }
-        return false;
+        return false;            
     }
 
-    public void SellTurret()
+    public void SellTurret()                                                  //function to sell the turret
     {
-        if (turret)
+        if (turret)                                                           //if there is a turret
         {
-            gameManager.Gold += turret.GetComponent<MonsterData>().CurrentLevel.cost/2;
-            turretPrefab = null;
-            occupied = false;
-            Destroy(turret);
+            gameManager.Gold += turret.GetComponent<TurretData>().CurrentLevel.cost/2;       //increases the gold from selling the turret
+            turretPrefab = null;   //sets the turretprefab to null
+            occupied = false;      //sets occupied to false
+            Destroy(turret);       //destroy the turret
         }
     }
 }

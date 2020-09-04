@@ -6,9 +6,9 @@ namespace Match3
 {
     public enum HealthStates          //the 3 different health states
     { 
-        Sick,
-        Neutral,
-        Healthy
+        Sick, // red
+        Neutral, // yellow
+        Healthy // green
     }
 
 

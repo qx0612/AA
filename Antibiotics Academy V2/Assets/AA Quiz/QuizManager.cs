@@ -28,7 +28,7 @@ public class QuizManager : MonoBehaviour
 
         for (int i = 1; i < data.Length - 1; i++)                         //for loop that stores the data into its respective variables
         {
-            string[] row = data[i].Split(new char[] { ',' });             //splits the data on the ,
+            string[] row = data[i].Split(new char[] { ';' });             //splits the data on the ;
             Questions question = new Questions();                         //create a new Question instance
             int.TryParse(row[0], out question.questionNo);                //parse through the integer
             question.questions = row[1];                                  //set the questions from the string in row 1  
@@ -60,7 +60,6 @@ public class QuizManager : MonoBehaviour
             if (ans == qns[index].answer)                   //if answer is the same as the answer in the question instance
             {
                 score++;                                    //increase score
-                Debug.Log("added");
             }
             index++;                                        //increase index
             NextQuestion();                                 
@@ -77,7 +76,6 @@ public class QuizManager : MonoBehaviour
             {
                 Application.Quit();
             }
-
             Debug.Log("No more Questions.");
             Debug.Log(score);
         }

@@ -11,7 +11,7 @@ namespace TowerDefense
         public GameObject heart;
         private AudioSource src;
 
-        public void TriggerStart()
+        public void TriggerStart()                       //function to start the game
         {
             Time.timeScale = 1f;
             src = heart.GetComponent<AudioSource>();

@@ -7,9 +7,9 @@ namespace TowerDefense
 {
     public class GameOver : MonoBehaviour
     {
-        void RestartLevel()
+        void RestartLevel()                                                 //function to restart level
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);     //load the active scene which is the Tower defense
         }
 
     }

@@ -5,9 +5,9 @@ public class MoveEnemy : MonoBehaviour
 {
 
     [HideInInspector]
-    public GameObject[] waypoints;
-    private int currentWaypoint = 0;
-    private float lastWaypointSwitchTime;
+    public GameObject[] waypoints;             //array of waypoints, which are empty gameobjects
+    private int currentWaypoint = 0;           //integer that represents current waypoint
+    private float lastWaypointSwitchTime;      
     public float speed = 1.0f;
 
     // Use this for initialization
@@ -20,43 +20,41 @@ public class MoveEnemy : MonoBehaviour
     void Update()
     {
         // 1 
-        Vector3 startPosition = waypoints[currentWaypoint].transform.position;
-        Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;
+        Vector3 startPosition = waypoints[currentWaypoint].transform.position;    //the current waypoint that they were last at
+        Vector3 endPosition = waypoints[currentWaypoint + 1].transform.position;  //the next waypoint they are going to
         // 2 
-        float pathLength = Vector2.Distance(startPosition, endPosition);
-        float totalTimeForPath = pathLength / speed;
-        float currentTimeOnPath = Time.time - lastWaypointSwitchTime;
-        gameObject.transform.position = Vector2.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);
+        float pathLength = Vector2.Distance(startPosition, endPosition);      //pathLength is the distance between the start and end
+        float totalTimeForPath = pathLength / speed;                          //totalTimeForPath is pathLength divided by speed
+        float currentTimeOnPath = Time.time - lastWaypointSwitchTime;         //currentTimeOnPath is current time minus lastWaypointSwitchTime
+        gameObject.transform.position = Vector2.Lerp(startPosition, endPosition, currentTimeOnPath / totalTimeForPath);  //updates enemy position by linearly interpolating from start positon to end position by the currentTime divided by totalTime     
         // 3 
-        if (gameObject.transform.position.Equals(endPosition))
+        if (gameObject.transform.position.Equals(endPosition))                //if the enemy reaches the end position  
         {
-            if (currentWaypoint < waypoints.Length - 2)
+            if (currentWaypoint < waypoints.Length - 2)                       //if the currentWaypoint is not in the last 2 waypoints (because last 2 waypoints is a straight line)
             {
-                // 4 Switch to next waypoint
-                currentWaypoint++;
-                lastWaypointSwitchTime = Time.time;
+                currentWaypoint++;                                            //currentwaypoint increases by 1
+                lastWaypointSwitchTime = Time.time;                           //update lastWayPointSwitchTime to current time
 
-                RotateIntoMoveDirection();
+                RotateIntoMoveDirection();                                    //call RotateIntoMoveDireciton
             }
             else
             {
-                // 5 Destroy enemy
-                Destroy(gameObject);
+                Destroy(gameObject);                                         //if it reaches the last waypoint, it will destroy the gameobject
 
                 AudioSource audioSource = gameObject.GetComponent<AudioSource>();
                 AudioSource.PlayClipAtPoint(audioSource.clip, transform.position);
 
                 GameManagerBehavior gameManager =
                     GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
-                gameManager.Health -= 1;
+                gameManager.Health -= 1;                                    //player loses a health
             }
         }
     }
 
-    private void RotateIntoMoveDirection()
+    private void RotateIntoMoveDirection()                                  //function to rotate direction
     {
         //1
-        Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;
+        Vector3 newStartPosition = waypoints[currentWaypoint].transform.position;         
         Vector3 newEndPosition = waypoints[currentWaypoint + 1].transform.position;
         Vector3 newDirection = (newEndPosition - newStartPosition);
         //2
@@ -68,7 +66,7 @@ public class MoveEnemy : MonoBehaviour
         sprite.transform.rotation = Quaternion.AngleAxis(rotationAngle, Vector3.forward);
     }
 
-    public float DistanceToGoal()
+    public float DistanceToGoal()                                          //function to calculate the distance to goal
     {
         float distance = 0;
         distance += Vector2.Distance(

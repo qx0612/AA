@@ -8,7 +8,7 @@ namespace TowerDefense
     public class Tutorial1
     {
         [TextArea(3, 10)]
-        public string[] sentences;
+        public string[] sentences; // the sentences of the tutorial
     }
 
 }

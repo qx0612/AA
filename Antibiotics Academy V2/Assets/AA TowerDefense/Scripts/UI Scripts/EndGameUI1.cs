@@ -22,8 +22,7 @@ namespace TowerDefense
 
         public void TriggerQuitLost()
         {
-            SceneManager.LoadScene(7); // back to main
-            GameManager.surgeonStage = 0;
+            // cut scene
         }
     }
 }

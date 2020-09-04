@@ -1,11 +1,11 @@
 id,question,answer
-1,Taking fruits & vegetables helps to maintain my immunity levels.,TRUE
-2,Antibiotics can be used to treat cold and flu.,FALSE
-3,Antibiotic-resistant infections could make medical procedures like surgery and organ transplants more dangerous.,TRUE
-4,"When having a cold/flu, one should rest at home.",TRUE
-5,Frequent handwashing helps to spread diseases.,FALSE
-6,Antibiotics can treat viral infections.,FALSE
-7,Getting less than 7 hours of rest helps to keep us healthy.,FALSE
-8,Vaccinations helps to reduce chances of getting certain illnesses.,TRUE
-9,Flu vaccination can protect me from the flu and pneumonia.,TRUE
-10,Humans can be resistant to antibiotics,FALSE
+1;Taking fruits & vegetables helps to maintain my immunity levels.;TRUE
+2;Antibiotics can be used to treat cold and flu.;FALSE
+3;Antibiotic-resistant infections could make medical procedures like surgery and organ transplants more dangerous.;TRUE
+4;When having a cold/flu,one should rest at home.;TRUE
+5;Frequent handwashing helps to spread diseases.;FALSE
+6;Antibiotics can treat viral infections.;FALSE
+7;Getting less than 7 hours of rest helps to keep us healthy.;FALSE
+8;Vaccinations helps to reduce chances of getting certain illnesses.;TRUE
+9;Flu vaccination can protect me from the flu and pneumonia.;TRUE
+10;Humans can be resistant to antibiotics;FALSE
