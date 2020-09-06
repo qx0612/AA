@@ -368,4 +368,8 @@ public class GameManager : MonoBehaviour
         menu.SetActive(false);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit(); // quit the game instantly
+    }
 }

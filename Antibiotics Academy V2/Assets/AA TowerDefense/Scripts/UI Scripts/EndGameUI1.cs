@@ -16,6 +16,7 @@ namespace TowerDefense
         {
             // back to hub
             GameManager.surgeonStage = 3;
+            GameManager.npclawyerStage = 1;
 
             SceneManager.LoadScene(7); // go back to hospital
         }
