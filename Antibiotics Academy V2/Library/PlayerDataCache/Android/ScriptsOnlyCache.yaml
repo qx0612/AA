@@ -55,8 +55,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
-    - UnityEditor.Tilemaps.GridPaletteBrushes
-    - UnityEditor.Tilemaps.GridPalettes
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.TileDragAndDropManager
     Unity.Rider.Editor.dll:
@@ -1739,4 +1737,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Death.unity
   - Assets/Scenes/Endless Runner.unity
   - Assets/Scenes/Pre Game Quiz.unity
-  playerPath: C:/Users/nqx1e/Desktop/Antibiotics Academy V2/Builds/AA1.apk
+  playerPath: C:/Users/nqx1e/Documents/GitHub/AA/Antibiotics Academy V2/Builds/AA.apk
